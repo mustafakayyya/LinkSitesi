@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Saklama Sitesi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Link Saklama Sitesi</h1>
+        <button id="addLinkBtn">Link Ekle</button>
+        <div id="linkForm" class="hidden">
+            <form action="{{ url_for('add_link') }}" method="POST">
+                <input type="password" name="password" placeholder="Şifre">
+                <input type="text" name="link" placeholder="Link">
+                <input type="text" name="description" placeholder="Link Açıklaması">
+                <button type="submit">Ekle</button>
+            </form>
+        </div>
+        <div id="linksContainer">
+            {% for link in links %}
+            <div class="link-item">
+                <a href="{{ link[1] }}" target="_blank">{{ link[2] }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
